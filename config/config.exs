@@ -29,7 +29,16 @@ config :account_bot, AccountBotWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :account_bot, AccountBot.Mailer, adapter: Swoosh.Adapters.Local
+config :account_bot, AccountBot.Mailer,
+  adapter: Swoosh.Adapters.SMTP,
+  relay: "smtp.google.com",
+  username: Dotenv.get("SMTP_USERNAME"),
+  password: Dotenv.get("SMTP_PASSWORD"),
+  ssl: true,
+  tls: :always,
+  auth: :always,
+  port: 1025,
+  retries: 5
 
 # Configure esbuild (the version is required)
 config :esbuild,
