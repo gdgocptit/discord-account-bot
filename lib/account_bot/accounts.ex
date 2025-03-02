@@ -105,4 +105,8 @@ defmodule AccountBot.Accounts do
   def get_unactivate_by_discord_id(discord_id) do
     Repo.get_by(User, discord_id: discord_id, is_activated: false)
   end
+
+  def exists_with_email?(email) do
+    not (User |> Repo.get_by(email: email, is_activated: false) |> is_nil)
+  end
 end

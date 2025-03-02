@@ -7,7 +7,7 @@ defmodule AccountBot.Accounts.User do
   schema "users" do
     field :name, :string
     field :email, :string
-    field :student_id, :string, default: nil
+    field :student_id, :string
     field :discord_id, :string
     field :is_activated, :boolean, default: false
 
@@ -18,6 +18,6 @@ defmodule AccountBot.Accounts.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :email, :student_id, :discord_id, :is_activated])
-    |> validate_required([:name, :email, :discord_id])
+    |> validate_required([:name, :email, :student_id, :discord_id])
   end
 end
